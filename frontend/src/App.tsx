@@ -430,12 +430,12 @@ function App() {
       {/* Footer Bar */}
       <div className="relative z-10 flex h-9 w-full items-center justify-end border-t border-white/10 bg-[#050b0d]/80 px-6 backdrop-blur-xl">
         <a 
-          href="https://x.com/OverBlock_" 
+          href="https://x.com/kaptan_web3" 
           target="_blank" 
           rel="noopener noreferrer"
           className="flex items-center gap-2 text-sm font-semibold text-slate-300 transition-colors hover:text-cyan-200"
         >
-          Powered by OverBlock
+          Created by Kaptan_web3
           <span className="text-base">X</span>
         </a>
       </div>
