@@ -330,17 +330,30 @@ export default function BridgeForm({ ethAddress, stellarAddress }: BridgeFormPro
 
   // Fetch balance when direction or addresses change - with debounce
   useEffect(() => {
+    console.log('🔄 Balance fetch useEffect triggered:', { 
+      direction, 
+      ethAddress: ethAddress ? `${ethAddress.slice(0, 8)}...` : 'none', 
+      stellarAddress: stellarAddress ? `${stellarAddress.slice(0, 8)}...` : 'none' 
+    });
+    
     if ((direction === 'eth_to_xlm' && ethAddress) || (direction === 'xlm_to_eth' && stellarAddress)) {
+      console.log('✅ Conditions met, setting Loading... and scheduling fetch');
+      
       // Immediately reset balance to show loading state when direction changes
       setBalance('Loading...');
       
       // Debounce balance fetching to prevent too many calls
       const timeoutId = setTimeout(() => {
+        console.log('⏰ Timeout fired, calling fetchBalance for direction:', direction);
         fetchBalance();
       }, 500); // Wait 500ms after last change
       
-      return () => clearTimeout(timeoutId);
+      return () => {
+        console.log('🧹 Cleanup: clearing timeout for direction:', direction);
+        clearTimeout(timeoutId);
+      };
     } else {
+      console.log('❌ Conditions not met, setting balance to 0');
       setBalance('0');
     }
   }, [direction, ethAddress, stellarAddress]);
