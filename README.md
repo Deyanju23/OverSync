@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="frontend/public/images/oversync-logo.png" alt="OverSync" width="140" />
+</p>
+
 # OverSync
 
 **A non-custodial Ethereum ↔ Stellar bridge built on symmetric HTLCs — no validator set, no attester, no admin escape hatch.**
