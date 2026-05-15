@@ -37,7 +37,9 @@ function App() {
   const [isConnecting, setIsConnecting] = useState(false);
   const [connectionError, setConnectionError] = useState<string>('');
   const [activeTab, setActiveTab] = useState<'bridge' | 'history'>('bridge');
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(() => {
+    return sessionStorage.getItem('oversync:intro-seen') !== 'true';
+  });
 
   // Freighter hook usage
   const {
@@ -53,13 +55,18 @@ function App() {
   const toast = useToast();
 
   useEffect(() => {
+    if (!showIntro) {
+      return;
+    }
+
+    sessionStorage.setItem('oversync:intro-seen', 'true');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const timer = window.setTimeout(() => {
       setShowIntro(false);
     }, prefersReducedMotion ? 250 : 2850);
 
     return () => window.clearTimeout(timer);
-  }, []);
+  }, [showIntro]);
 
   // Auto-connect MetaMask if previously connected
   useEffect(() => {
