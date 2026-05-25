@@ -356,7 +356,7 @@ function withTimeout<T>(promise: Promise<T>, timeoutMs: number, errorMessage: st
 // Relayer configuration from environment variables
 export const RELAYER_CONFIG = {
   // Service settings
-  port: Number(process.env.RELAYER_PORT) || 3001,
+  port: Number(process.env.RELAYER_PORT || process.env.PORT) || 3001,
       pollInterval: Number(process.env.RELAYER_POLL_INTERVAL) || 15000, // Increased from 5s to 15s
   retryAttempts: Number(process.env.RELAYER_RETRY_ATTEMPTS) || 3,
   retryDelay: Number(process.env.RELAYER_RETRY_DELAY) || 2000,

@@ -37,5 +37,8 @@
     "stellar",
     "event-listener",
     "cross-chain"
-  ]
+  ],
+  "engines": {
+    "node": ">=22.0.0"
+  }
 }
